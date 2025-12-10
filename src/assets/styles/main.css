@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 基础样式重置 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 自定义工具类（可选扩展） */
+@layer utilities {
+  .content-auto {
+    content-visibility: auto;
+  }
+  .backdrop-blur-sm {
+    backdrop-filter: blur(8px);
+  }
+  .text-shadow {
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .text-body {
+    @apply text-gray-700 text-sm;
+  }
+  .text-heading {
+    @apply font-semibold text-base;
+  }
+  .text-highlight {
+    @apply font-bold text-lg;
+  }
+}

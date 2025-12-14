@@ -18,13 +18,15 @@
 // import ynz2View from './views/ynz2View.vue'
 // import ynz5View from './views/ynz5View.vue'
 import { onMounted } from 'vue' // 引入生命周期钩子，确保DOM挂载后执行
-
 function simulateLoadingProgress() {
   const progressBar = document.getElementById('progress-bar')
   if (!progressBar) return // 避免元素不存在时报错
 
+
+
+
   let width = 0
-  const interval = setInterval(() => {
+              const interval = setInterval(() => {
     if (width >= 100) {
       clearInterval(interval)
       progressBar.style.width = '100%'

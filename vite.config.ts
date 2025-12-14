@@ -4,25 +4,7 @@ import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import { viteMockServe } from 'vite-plugin-mock' // 导入 mock 插件
 
-// https://vite.dev/config/
-// export default defineConfig({
-//   plugins: [vue(), vueDevTools()],
-//   resolve: {
-//     alias: {
-//       '@': fileURLToPath(new URL('./src', import.meta.url)),
-//     },
-//   },
-//   server: {
-//     proxy: {
-//       // 匹配所有以 "/api" 开头的请求（和 baseURL 对应）
-//       '/api': {
-//         target: 'https://2f777673.r24.cpolar.top', // 只写域名！不包含 /auth！
-//         changeOrigin: true, // 必须开启（绕开跨域的核心）
-//         rewrite: (path) => path.replace(/^\/api/, ''), // 删掉前端的 /api 前缀
-//       },
-//     },
-//   },
-// })
+
 export default defineConfig(({ mode }) => {
   // 加载当前环境的环境变量（.env.development 或 .env.mock）
   const env = loadEnv(mode, process.cwd())
@@ -53,7 +35,7 @@ export default defineConfig(({ mode }) => {
       proxy: {
         // 原有跨域代理配置不变，只在走真实接口时生效
         '/api': {
-          target: 'http://28070888.r24.cpolar.top',
+          target: 'http://8.134.138.69:8080',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ''),
         },

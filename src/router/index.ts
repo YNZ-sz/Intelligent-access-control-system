@@ -5,6 +5,8 @@ import MainLayout from '../layout/MainLayout.vue'
 import NotFoundView from '../layout/NotFoundView.vue'
 import mineView from '@/views/ynz5View.vue'
 import projectView from '@/views/ynz6View.vue'
+import UnderDevelopment from '@/views/UnderDevelopment.vue'
+import ynz5View from '@/views/ynz5View.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,6 +19,11 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: loginView,
+    },
+    {
+      path: '/aboutMe',
+      name: 'aboutMe',
+      component: ynz5View,
     },
     {
       path: '/main', // 父路由仍用根路径，但通过 children 匹配二级路由
@@ -62,10 +69,14 @@ const router = createRouter({
       name: 'project',
       component: projectView,
     },
-
+    {
+      path: '/under-development',
+      name: 'UnderDevelopment',
+      component: UnderDevelopment,
+    },
     // 404 路由不变
-    { path: '/404', name: 'NotFound', component: NotFoundView, meta: { requiresAuth: false } },
-    { path: '/:pathMatch(.*)*', redirect: '/404' },
+    // { path: '/404', name: 'NotFound', component: NotFoundView, meta: { requiresAuth: false } },
+    // { path: '/:pathMatch(.*)*', redirect: '/404' },
   ],
 })
 

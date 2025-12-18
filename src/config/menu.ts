@@ -14,12 +14,7 @@ export const menuList = [
     icon: 'HomeFilled',
     roles: ['EMPLOYEE', 'admin', 'manager'], // 所有角色都可访问
   },
-  {
-    index: '/main/UserInfo',
-    title: '个人中心',
-    icon: 'Avatar',
-    roles: ['EMPLOYEE', 'admin', 'manager'], // 仅管理员、经理可看
-  },
+
   {
     index: '/main/Attendance',
     title: '考勤调整',
@@ -27,15 +22,15 @@ export const menuList = [
     roles: ['EMPLOYEE', 'admin', 'manager'], // 仅管理员、经理可看
   },
   {
-    index: '/main/employee',
-    title: '员工管理',
-    icon: 'Setting',
+    index: '/main/UserInfo',
+    title: '打卡情况',
+    icon: 'FolderChecked',
     roles: ['EMPLOYEE', 'admin', 'manager'], // 仅管理员、经理可看
   },
   {
-    index: '/main/employee2',
-    title: '员工列表',
-    icon: 'Setting',
+    index: '/main/employee',
+    title: '员工管理',
+    icon: 'Avatar',
     roles: ['EMPLOYEE', 'admin', 'manager'], // 仅管理员、经理可看
   },
   {

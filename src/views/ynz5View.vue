@@ -15,15 +15,16 @@
     >
       <div class="container mx-auto px-4 md:px-8 flex justify-between items-center">
         <div class="flex items-center gap-2">
-          <div
+          <!-- <div
             class="w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 flex items-center justify-center"
           >
-            <UserFilled class="w-6 h-6" />
-          </div>
+            < Position  class="w-6 h-6" />
+          </div> -->
           <span
             class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400"
+            @click="back"
           >
-            Alex.dev
+            回到我的项目
           </span>
         </div>
         <nav class="hidden md:flex gap-8">
@@ -36,7 +37,8 @@
         <el-button
           type="primary"
           size="small"
-          class="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 border-0"
+          class="px-2 py-4 bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 border-0"
+          @click="downloadResumeImage"
         >
           下载简历
         </el-button>
@@ -53,13 +55,13 @@
               <div
                 class="inline-block px-4 py-1 rounded-full bg-purple-500/20 text-purple-300 text-sm font-medium border border-purple-500/30"
               >
-                全栈开发工程师 & 技术爱好者
+                前端开发工程师 & 技术爱好者
               </div>
               <h1 class="text-4xl md:text-6xl font-bold leading-tight">
-                嗨，我是
+                你好，我是
                 <span
                   class="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400"
-                  >Alex</span
+                  >叶诺舟</span
                 >
               </h1>
               <p class="text-xl text-slate-300">
@@ -70,6 +72,7 @@
                   type="primary"
                   size="large"
                   class="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 border-0 px-8 rounded-full"
+                  @click="openGitHub"
                 >
                   查看我的作品
                   <ArrowRight class="ml-2" />
@@ -78,15 +81,15 @@
                   type="default"
                   size="large"
                   class="bg-slate-800/50 hover:bg-slate-800 text-white border-slate-700 rounded-full px-8"
+                  @click="openGitHub"
                 >
                   了解更多
                 </el-button>
               </div>
-              <div class="flex gap-4 pt-2">
-                <SocialIcon icon="github" href="#" />
-                <SocialIcon icon="linkedin" href="#" />
-                <SocialIcon icon="twitter" href="#" />
-                <SocialIcon icon="codepen" href="#" />
+              <div
+                class="flex gap-4 text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400"
+              >
+                github.com/YNZ-sz
               </div>
             </div>
             <div class="relative" ref="homeImageRef" data-scroll-animation="fade-left">
@@ -96,17 +99,17 @@
                   class="absolute inset-0 bg-gradient-to-r from-purple-500/30 to-blue-500/30 rounded-full blur-3xl transform -translate-x-4 translate-y-4"
                 ></div>
                 <img
-                  src="https://picsum.photos/id/1012/300/300"
+                  src="@/assets/images/ynz001.jpg"
                   alt="Alex 个人头像"
                   class="relative z-10 w-full h-auto rounded-full border-4 border-slate-800 shadow-2xl"
                 />
                 <!-- 装饰元素 -->
-                <div
+                <!-- <div
                   class="absolute -bottom-4 -right-4 w-20 h-20 bg-purple-500 rounded-full flex items-center justify-center text-2xl font-bold"
                 >
                   5+
                   <span class="text-xs block">年经验</span>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -127,7 +130,7 @@
           >
             <h2 class="text-3xl md:text-4xl font-bold mb-4">关于我</h2>
             <div class="w-20 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto mb-6"></div>
-            <p class="text-slate-300">探索我的技术旅程、价值观和专业背景</p>
+            <p class="text-slate-300">记录我的前端学习轨迹、实践思路与成长方向</p>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -137,12 +140,12 @@
                   class="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-2xl blur-xl transform -translate-x-2 translate-y-2"
                 ></div>
                 <img
-                  src="https://picsum.photos/id/1005/400/300"
+                  src="@/assets/images/ynz002.jpg"
                   alt="工作场景"
                   class="relative z-10 w-full h-auto rounded-2xl shadow-2xl"
                 />
                 <!-- 装饰卡片 -->
-                <div
+                <!-- <div
                   class="absolute -bottom-40 bg-slate-800/90 backdrop-blur-sm p-4 rounded-xl border border-slate-700 shadow-xl max-w-xs"
                 >
                   <div class="flex items-center gap-3">
@@ -154,17 +157,18 @@
                       <p class="text-sm text-slate-400">成功交付项目</p>
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
 
             <div class="space-y-6" ref="aboutContentRef" data-scroll-animation="fade-left">
-              <h3 class="text-2xl font-bold">打造数字体验的技术工匠</h3>
+              <h3 class="text-2xl font-bold">深耕前端的实践型技术学习者</h3>
               <p class="text-slate-300 leading-relaxed">
-                我是一名充满激情的全栈开发工程师，拥有5年以上的专业经验。擅长使用现代技术栈构建高性能、可扩展的Web应用和移动应用。
+                我是一名学习前端开发的大学生，平时会用 Vue、TypeScript
+                这些技术做项目开发，也尝试过鸿蒙应用以及微信小程序的前端模块开发。
               </p>
               <p class="text-slate-300 leading-relaxed">
-                我的工作理念是将复杂的技术转化为简单易用的产品，注重代码质量、用户体验和性能优化。我热衷于学习新技术，并将其应用到实际项目中。
+                熟悉常用的前端框架和工具，对前端页面优化、状态管理这些实际开发中的问题有一定处理经验，热衷于学习新技术，并将其应用到实际项目中。
               </p>
 
               <!-- 个人信息卡片 -->
@@ -173,25 +177,25 @@
                   class="bg-slate-800/50 backdrop-blur-sm p-4 rounded-xl border border-slate-700"
                 >
                   <p class="text-slate-400 text-sm">姓名</p>
-                  <p class="font-medium">Alex Johnson</p>
+                  <p class="font-medium">叶诺舟</p>
                 </div>
                 <div
                   class="bg-slate-800/50 backdrop-blur-sm p-4 rounded-xl border border-slate-700"
                 >
                   <p class="text-slate-400 text-sm">职业</p>
-                  <p class="font-medium">全栈开发工程师</p>
+                  <p class="font-medium">前端开发工程师</p>
                 </div>
                 <div
                   class="bg-slate-800/50 backdrop-blur-sm p-4 rounded-xl border border-slate-700"
                 >
                   <p class="text-slate-400 text-sm">邮箱</p>
-                  <p class="font-medium">alex@example.com</p>
+                  <p class="font-medium">2557524312@qq.com</p>
                 </div>
                 <div
                   class="bg-slate-800/50 backdrop-blur-sm p-4 rounded-xl border border-slate-700"
                 >
                   <p class="text-slate-400 text-sm">所在地</p>
-                  <p class="font-medium">旧金山, 美国</p>
+                  <p class="font-medium">广东, 深圳</p>
                 </div>
               </div>
 
@@ -364,20 +368,15 @@
                   <ContactCard
                     icon="email"
                     title="邮箱"
-                    content="alex@example.com"
-                    link="mailto:alex@example.com"
+                    content="2557524432@qq.com"
+                    link="2557524331@qq.com"
                   />
-                  <ContactCard
-                    icon="phone"
-                    title="电话"
-                    content="+1 (555) 123-4567"
-                    link="tel:+15551234567"
-                  />
-                  <ContactCard icon="location" title="地址" content="旧金山, 加利福尼亚州, 美国" />
+                  <ContactCard icon="phone" title="电话" content="18929329293" link="18929329194" />
+                  <ContactCard icon="location" title="地址" content="广东省，深圳市，福田区" />
                 </div>
 
                 <!-- 社交媒体 -->
-                <div>
+                <!-- <div>
                   <h4 class="text-lg font-semibold mb-4">关注我</h4>
                   <div class="flex gap-4">
                     <SocialIcon icon="github" href="#" size="lg" />
@@ -386,10 +385,10 @@
                     <SocialIcon icon="codepen" href="#" size="lg" />
                     <SocialIcon icon="dribbble" href="#" size="lg" />
                   </div>
-                </div>
+                </div> -->
 
                 <!-- 动态地图占位 -->
-                <div
+                <!-- <div
                   class="w-full h-64 bg-slate-800/30 rounded-xl overflow-hidden border border-slate-700/50 relative"
                 >
                   <img
@@ -400,7 +399,7 @@
                   <div class="absolute inset-0 flex items-center justify-center">
                     <div class="bg-purple-500/80 w-6 h-6 rounded-full animate-pulse"></div>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -421,7 +420,7 @@
             <span
               class="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400"
             >
-              Alex.dev
+              github.com/YNZ-sz
             </span>
           </div>
           <p class="text-slate-400 text-sm">
@@ -463,7 +462,11 @@ import SocialIcon from '@/components/profile/SocialIcon.vue'
 import SkillCard from '@/components/profile/SkillCard.vue'
 import ProjectCard from '@/components/profile/ProjectCard.vue'
 import ContactCard from '@/components/profile/ContactCard.vue'
-
+import { useRouter } from 'vue-router'
+import ynz010Img from '@/assets/images/ynz010.png'
+import ynz020Img from '@/assets/images/ynz020.png'
+import ynz030Img from '@/assets/images/ynz030.png'
+const router = useRouter()
 // 状态管理
 const { y: scrollY } = useScroll(window) // 修复：指定 window 作为目标元素
 const activeSection = ref('home')
@@ -483,53 +486,41 @@ interface skillsData {
   percentage: number
   icon: 'html' | 'css' | 'js' | 'vue' | 'react' | 'node' | 'ts' | 'design'
 }
-// 技能标签和数据
-const skillTabs = ref(['前端开发', '后端开发', '数据库', '设计工具', '其他技能'])
+
+// 技能标签（按新需求调整为4个分类）
+const skillTabs = ref(['前端技术基础', '框架与工具', '版本控制', '跨端开发'])
+
+// 技能数据（严格遵循 skillsData[][] 二维数组格式）
 const skillsData = ref<skillsData[][]>([
-  // 前端开发
+  // 第一类：前端技术基础（对应 skillTabs[0]）
   [
-    { title: 'HTML5/CSS3', percentage: 95, icon: 'html' },
-    { title: 'JavaScript/TypeScript', percentage: 90, icon: 'js' },
-    { title: 'Vue.js 3', percentage: 92, icon: 'vue' },
-    { title: 'React', percentage: 85, icon: 'react' },
-    { title: 'Tailwind CSS', percentage: 88, icon: 'css' },
-    { title: 'Element Plus', percentage: 90, icon: 'design' },
+    { title: 'HTML', percentage: 90, icon: 'html' },
+    { title: 'CSS', percentage: 80, icon: 'css' },
+    { title: 'JavaScript', percentage: 75, icon: 'js' },
+    { title: 'TypeScript', percentage: 75, icon: 'ts' },
+    { title: 'ES6 语法', percentage: 75, icon: 'js' },
+    { title: 'Tailwind CSS', percentage: 70, icon: 'css' },
   ],
-  // 后端开发
+  // 第二类：框架与工具（对应 skillTabs[1]）
   [
-    { title: 'Node.js', percentage: 85, icon: 'node' },
-    { title: 'Express', percentage: 82, icon: 'node' },
-    { title: 'NestJS', percentage: 78, icon: 'node' },
-    { title: 'Python', percentage: 80, icon: 'ts' },
-    { title: 'Django', percentage: 75, icon: 'ts' },
-    { title: 'RESTful API', percentage: 90, icon: 'design' },
+    { title: 'Vue3.0', percentage: 90, icon: 'vue' },
+    { title: 'Vue Router', percentage: 90, icon: 'vue' },
+    { title: 'Pinia', percentage: 90, icon: 'vue' },
+    { title: 'Element Plus', percentage: 80, icon: 'vue' },
+    { title: 'Axios', percentage: 80, icon: 'design' },
   ],
-  // 数据库
+  // 第三类：版本控制（对应 skillTabs[2]）
   [
-    { title: 'MySQL', percentage: 88, icon: 'design' },
-    { title: 'MongoDB', percentage: 82, icon: 'design' },
-    { title: 'PostgreSQL', percentage: 78, icon: 'design' },
-    { title: 'Redis', percentage: 80, icon: 'design' },
-    { title: 'SQLite', percentage: 85, icon: 'design' },
-    { title: '数据库优化', percentage: 83, icon: 'design' },
+    { title: 'Git 基础', percentage: 60, icon: 'design' },
+    { title: '分支管理', percentage: 50, icon: 'design' },
+    { title: '冲突解决', percentage: 40, icon: 'design' },
   ],
-  // 设计工具
+  // 第四类：跨端开发（对应 skillTabs[3]）
   [
-    { title: 'Figma', percentage: 75, icon: 'design' },
-    { title: 'Adobe XD', percentage: 70, icon: 'design' },
-    { title: 'Photoshop', percentage: 80, icon: 'design' },
-    { title: 'Illustrator', percentage: 65, icon: 'design' },
-    { title: '原型设计', percentage: 82, icon: 'design' },
-    { title: 'UI/UX 设计', percentage: 78, icon: 'design' },
-  ],
-  // 其他技能
-  [
-    { title: 'Git', percentage: 90, icon: 'design' },
-    { title: 'Docker', percentage: 75, icon: 'design' },
-    { title: 'CI/CD', percentage: 70, icon: 'design' },
-    { title: 'AWS/Azure', percentage: 68, icon: 'design' },
-    { title: 'SEO 优化', percentage: 80, icon: 'design' },
-    { title: '敏捷开发', percentage: 85, icon: 'design' },
+    { title: 'HarmonyOS', percentage: 65, icon: 'design' },
+    { title: 'ArkTS', percentage: 60, icon: 'design' },
+    { title: '声明式 UI', percentage: 60, icon: 'design' },
+    { title: '路由跳转', percentage: 50, icon: 'design' },
   ],
 ])
 
@@ -539,48 +530,50 @@ const currentSkills = computed(() => skillsData.value[activeSkillTab.value])
 // 项目数据
 const projects = ref([
   {
-    title: '智能仪表板应用',
+    title: '企业智能考勤管理系统    (2025.9-2025.11)',
     description:
-      '基于 Vue3 和 Element Plus 构建的企业级数据可视化平台，支持实时数据监控和多维度数据分析',
-    image: 'https://picsum.photos/id/0/400/300',
-    tags: ['Vue3', 'Element Plus', 'TypeScript', 'ECharts', 'Pinia'],
+      '聚焦企业考勤核心场景，整合员工信息管理、打卡数据统计等功能，为企业提供高效稳定的考勤解决方案',
+    image: ynz010Img,
+    tags: ['Vue3', 'TypeScript', 'Tailwind CSS', 'Pinia', 'Element Plus'],
     link: '#',
   },
   {
-    title: '电子商务平台',
-    description: '全功能电商网站，包含商品管理、购物车、支付集成、用户中心等模块，支持响应式设计',
-    image: 'https://picsum.photos/id/26/400/300',
-    tags: ['React', 'Node.js', 'MongoDB', 'Tailwind CSS', 'Express'],
+    title: '鸿蒙单词学习应用   (2025.8-2025.9)',
+    description:
+      '独立负责鸿蒙系统下单词学习应用的前端全量开发，聚焦背单词、社区、商城、个人中心四大核心模块，基于 ArkTS 完成从页面搭建到状态管理的全流程落地，适配鸿蒙手机端交互标准，最终实现应用基础功能的完整交付。',
+    image: ynz020Img,
+    tags: ['HarmonyOS', 'ArkTS', 'AppStorage', '声明式UI'],
     link: '#',
   },
   {
-    title: '移动应用原型',
-    description: '健康追踪应用的前端实现，注重用户体验和交互设计，支持离线数据存储和同步',
-    image: 'https://picsum.photos/id/96/400/300',
-    tags: ['Vue3', 'Vite', 'Capacitor', 'Tailwind CSS', 'PWA'],
+    title: '智慧社区小程序   (2025.4-2025.5)',
+    description:
+      '独立开发的智慧社区服务类小程序，涵盖信息采集、社区活动、人脸检测等核心功能模块，基于微信小程序技术栈完成页面布局、功能交互与后端接口对接，适配移动端操作习惯，实现物业业务、便民服务等社区场景的一站式服务交付。',
+    image: ynz030Img,
+    tags: ['微信小程序', 'Django', 'Vant Weapp', '前端开发'],
     link: '#',
   },
-  {
-    title: '内容管理系统',
-    description: '灵活的 CMS 平台，支持自定义字段、角色权限管理和多语言，适用于各类网站建设',
-    image: 'https://picsum.photos/id/48/400/300',
-    tags: ['NestJS', 'Vue3', 'MySQL', 'JWT', 'TypeScript'],
-    link: '#',
-  },
-  {
-    title: '社交媒体应用',
-    description: '实时聊天和内容分享平台，支持图片/视频上传、评论互动和用户关注功能',
-    image: 'https://picsum.photos/id/60/400/300',
-    tags: ['React', 'Firebase', 'Redux', 'Tailwind CSS', 'Socket.io'],
-    link: '#',
-  },
-  {
-    title: '数据分析工具',
-    description: '帮助企业分析业务数据的可视化工具，支持自定义报表和数据导出功能',
-    image: 'https://picsum.photos/id/180/400/300',
-    tags: ['Vue3', 'D3.js', 'TypeScript', 'Pinia', 'ExcelJS'],
-    link: '#',
-  },
+  // {
+  //   title: '内容管理系统',
+  //   description: '灵活的 CMS 平台，支持自定义字段、角色权限管理和多语言，适用于各类网站建设',
+  //   image: 'https://picsum.photos/id/48/400/300',
+  //   tags: ['NestJS', 'Vue3', 'MySQL', 'JWT', 'TypeScript'],
+  //   link: '#',
+  // },
+  // {
+  //   title: '社交媒体应用',
+  //   description: '实时聊天和内容分享平台，支持图片/视频上传、评论互动和用户关注功能',
+  //   image: 'https://picsum.photos/id/60/400/300',
+  //   tags: ['React', 'Firebase', 'Redux', 'Tailwind CSS', 'Socket.io'],
+  //   link: '#',
+  // },
+  // {
+  //   title: '数据分析工具',
+  //   description: '帮助企业分析业务数据的可视化工具，支持自定义报表和数据导出功能',
+  //   image: 'https://picsum.photos/id/180/400/300',
+  //   tags: ['Vue3', 'D3.js', 'TypeScript', 'Pinia', 'ExcelJS'],
+  //   link: '#',
+  // },
 ])
 
 // 滚动监听：更新当前活跃的section
@@ -657,7 +650,11 @@ const initAnimationStyles = () => {
   `
   document.head.appendChild(style)
 }
-
+const openGitHub = () => {
+  const githubUrl = 'https://github.com/YNZ-sz'
+  // _blank：新标签页打开；noopener noreferrer：安全优化
+  window.open(githubUrl, '_blank', 'noopener noreferrer')
+}
 // 粒子背景效果（简化版）
 const createParticles = () => {
   if (!particleContainer.value) return
@@ -739,6 +736,21 @@ const submitContactForm = () => {
   }
 }
 
+const back = () => {
+  router.push({ path: '/main' })
+}
+const resumeImageUrl = '@/assets/images/ynzjianli.png'
+const downloadResumeImage = () => {
+  const link = document.createElement('a')
+  // 2. 设置图片地址为a标签的链接
+  link.href = resumeImageUrl
+  // 3. 设置下载后的文件名（可选，默认是图片原文件名）
+  link.download = 'ynz的简历.jpg'
+  // 4. 把a标签加入文档，触发点击，然后移除
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+}
 // 初始化
 onMounted(() => {
   // 初始化动画样式

@@ -66,6 +66,8 @@
     <main class="px-8 pb-12">
       <!-- 标签栏 -->
       <el-tabs v-model="activeTab" class="mb-6">
+        <el-tab-pane label="打卡信息" name="card"><card /></el-tab-pane>
+
         <el-tab-pane label="主页" name="home" class="flex flex-wrap items-start gap-3">
           <!-- 用户卡片 -->
           <el-card class="w-80 bg-white rounded-xl shadow-sm mb-4">
@@ -132,7 +134,6 @@
             </div>
           </el-card>
         </el-tab-pane>
-        <el-tab-pane label="打卡信息" name="card"><card /></el-tab-pane>
         <el-tab-pane label="我的收藏" name="favorites" />
       </el-tabs>
     </main>
@@ -140,7 +141,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { UserFilled } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
 import { getuserinfo } from '@/api/user' // 导入接口
@@ -148,7 +149,7 @@ import { useUserStore } from '@/stores/user'
 import card from '@/components/card/card.vue'
 // 响应式变量
 const userStore = useUserStore()
-const activeTab = ref('home')
+const activeTab = ref('card')
 const viewMode = ref('self')
 const signature = ref('')
 const gender = ref('')
@@ -162,12 +163,18 @@ let userInfo: any = ref({
   signature: '给自己起一个中二的签名',
   avatar: '', // 头像地址，初始为空
 })
+watch(
+  () => userStore.userInfo_carf, // 监听的目标值
+  (newVal) => {
+    if (newVal === true) {
+      activeTab.value = 'home' // 当userInfo_carf为true时，设置activeTab为home
+    }
+  },
+  { immediate: true }, // 立即执行一次（页面初始化时就触发判断）
+)
 
 onMounted(() => {
   getuser()
-  if (userStore.userInfo_carf) {
-    activeTab.value = 'card'
-  }
 })
 onUnmounted(() => {
   userStore.userInfo_carf = false

@@ -4,7 +4,6 @@ import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import { viteMockServe } from 'vite-plugin-mock' // 导入 mock 插件
 
-
 export default defineConfig(({ mode }) => {
   // 加载当前环境的环境变量（.env.development 或 .env.mock）
   const env = loadEnv(mode, process.cwd())

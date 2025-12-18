@@ -172,7 +172,7 @@ service.interceptors.response.use(
       // 无响应（如：网络断开、超时）
       errorMsg = ' 无响应（如：网络断开、超时）'
     }
-    // 提示错误信息
+    //提示错误信息
     ElMessage.error('request响应拦截器报错：' + errorMsg)
     // 非 401 错误，直接返回错误
     console.log('request响应拦截器报错：' + errorMsg)

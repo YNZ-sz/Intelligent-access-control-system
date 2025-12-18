@@ -72,6 +72,7 @@ export const useUserStore = defineStore('user', () => {
 
     initMenus()
     console.log('成功, pinia提示')
+
     router.push({ name: 'main' })
     return null
   }

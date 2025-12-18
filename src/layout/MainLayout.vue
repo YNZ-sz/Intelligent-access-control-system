@@ -22,40 +22,7 @@
           <ArrowRight v-else />
         </el-icon>
       </div>
-      <!-- 旧的侧边栏菜单 -->
-      <!-- <el-menu
-        :default-active="activeMenu"
-        class="h-[calc(100vh-4rem)] border-r-0"
-        background-color="transparent"
-        text-color="#333333"
-        active-text-color="#555555"
-        :collapse="isSidebarCollapse"
-        @select="handleMenuSelect"
-      >
-        <template v-for="menu in userStore.usermenuList" :key="menu.index">
-          <el-sub-menu v-if="menu.children && menu.children.length" :index="menu.index">
-            <template #title>
-              <el-icon><component :is="menu.icon" /></el-icon>
-              <span>{{ menu.title }}</span>
-            </template>
-            <el-menu-item
-              v-for="subMenu in menu.children"
-              :key="subMenu.index"
-              :index="subMenu.index"
-            >
-              <span>{{ subMenu.title }}</span>
-            </el-menu-item>
-          </el-sub-menu>
 
-          <el-menu-item v-else :index="menu.index">
-            <div class="bg-white ">
-              <el-icon><component :is="menu.icon" /></el-icon>
-              <span v-if="!isSidebarCollapse">{{ menu.title }}</span>
-            </div>
-          </el-menu-item>
-        </template>
-      </el-menu>
-    </el-aside> -->
       <!-- 侧边栏菜单 -->
       <el-menu
         :default-active="activeMenu"
@@ -135,15 +102,26 @@
         class="bg-gradient-to-br from-sky-100 via-indigo-100 via-purple-100 to-rose-100 shadow-sm h-16 px-6 flex items-center border-b border-gray-300 justify-between"
       >
         <!-- 移动端侧边栏展开按钮 -->
-        <!-- <el-icon
-          class="md:hidden text-gray-500 cursor-pointer"
+        <el-icon
+          class="md:hidden mr-2 text-gray-500 cursor-pointer"
           @click="isSidebarCollapse = !isSidebarCollapse"
         >
           <Menu />
-        </el-icon> -->
+        </el-icon>
+        <el-button
+          type="primary"
+          class="px-2 py-4 mr-6 bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 border-0"
+          @click="router.push({ path: '/aboutMe' })"
+        >
+          作者信息
+        </el-button>
+        <!-- 公告栏 -->
+        <div class="flex items-center p-2 rounded-2xl shadow-lg border bg-white flex-1 mr-5">
+          <el-icon><Message /></el-icon>
+          <p class="text-gray-800 text-xs ml-1">公告: 本站仍在开发阶段，部分功能尚未完善...</p>
+        </div>
 
         <!-- 右侧用户信息 + 退出登录 -->
-
         <div class="ml-auto flex items-center space-x-4">
           <el-popover
             trigger="click"
@@ -206,8 +184,8 @@
                   "
                   class="border-y border-gray-100 rounded-md p-3 flex items-center hover:bg-gray-100 transition-colors cursor-pointer"
                 >
-                  <el-icon class="mr-2 text-gray-700"><Star /></el-icon>
-                  <span class="font-bold">今日打卡</span>
+                  <el-icon class="mr-2 text-gray-700"><Edit /></el-icon>
+                  <span class="font-bold">我的信息</span>
                 </div>
 
                 <div
@@ -227,6 +205,80 @@
         class="bg-gradient-to-br from-sky-100 via-indigo-100 via-purple-100 to-rose-100 flex-1 overflow-y-auto p-6 bg-gray-50"
         style="max-height: calc(100vh - 4rem)"
       >
+        <div
+          v-if="!isSidebarCollapse"
+          class="bg-white/70 backdrop-blur-sm rounded-xl py-3 mb-3 md:hidden"
+        >
+          <el-menu
+            :default-active="activeMenu"
+            class="border-r-0 custom-menu font-bold"
+            background-color="transparent"
+            text-color="#333333"
+            active-text-color="#333333"
+            @select="handleMenuSelect"
+            style="--el-menu-active-color: transparent"
+          >
+            <template v-for="menu in userStore.usermenuList" :key="menu.index">
+              <!-- 有子菜单的情况 -->
+              <el-sub-menu
+                v-if="menu.children && menu.children.length"
+                :index="menu.index"
+                class="relative"
+              >
+                <template #title>
+                  <!-- 自定义状态容器：绑定当前菜单是否激活/悬浮 -->
+                  <div
+                    class="menu-item-container"
+                    :class="[
+                      activeMenu === menu.index ? 'active' : '',
+                      isHoveringIndex === menu.index ? 'hover' : '',
+                    ]"
+                    @mouseenter="isHoveringIndex = menu.index"
+                    @mouseleave="isHoveringIndex = ''"
+                  >
+                    <el-icon><component :is="menu.icon" /></el-icon>
+                    <span>{{ menu.title }}</span>
+                  </div>
+                </template>
+                <el-menu-item
+                  v-for="subMenu in menu.children"
+                  :key="subMenu.index"
+                  :index="subMenu.index"
+                  class="relative"
+                >
+                  <div
+                    class="menu-item-container"
+                    :class="[
+                      activeMenu === subMenu.index ? 'active' : '',
+                      isHoveringIndex === subMenu.index ? 'hover' : '',
+                    ]"
+                    @mouseenter="isHoveringIndex = subMenu.index"
+                    @mouseleave="isHoveringIndex = ''"
+                  >
+                    <span>{{ subMenu.title }}</span>
+                  </div>
+                </el-menu-item>
+              </el-sub-menu>
+
+              <!-- 无子菜单的情况 -->
+              <el-menu-item v-else :index="menu.index" class="relative">
+                <div
+                  class="menu-item-container"
+                  :class="[
+                    activeMenu === menu.index ? 'active' : '',
+                    isHoveringIndex === menu.index ? 'hover' : '',
+                  ]"
+                  @mouseenter="isHoveringIndex = menu.index"
+                  @mouseleave="isHoveringIndex = ''"
+                >
+                  <el-icon><component :is="menu.icon" /></el-icon>
+                  <span>{{ menu.title }}</span>
+                </div>
+              </el-menu-item>
+            </template>
+          </el-menu>
+        </div>
+
         <!-- 子路由组件（员工管理页面）会在这里渲染，溢出时滚动 -->
         <router-view />
       </el-main>
@@ -243,6 +295,7 @@ import { useUserStore } from '@/stores/user'
 import { useEmployeeStore } from '@/stores/employee'
 
 import type { MenuItem } from '@/config/menu'
+import type { Edit } from '@element-plus/icons-vue'
 
 // // 导入 Element Plus 组件和图标
 // import {

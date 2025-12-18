@@ -2,8 +2,19 @@ import router from './index' // 导入路由实例
 import { useUserStore } from '@/stores/user' // 导入 Pinia 用户仓库
 import { ElMessage } from 'element-plus' // 可选：用 UI 库提示（可替换为 alert）
 
-// 全局前置守卫：路由跳转前触发（每次跳转都执行）
+const devRoutes = [
+  '/main/department',
+  '/main/system/profile',
+  '/main/system/security',
+  '/mainsystem/notice',
+]
+// // 全局前置守卫：路由跳转前触发（每次跳转都执行）
 router.beforeEach((to, from, next) => {
+  if (devRoutes.includes(to.path)) {
+    // 跳转到开发中页面
+    next('/under-development')
+  }
+
   const userStore = useUserStore() // 实例化 Pinia 仓库
 
   // 1. 初始化 Token：页面刷新时，从本地存储恢复 Token（避免刷新后登录状态丢失）

@@ -7,7 +7,7 @@
       <img
         :src="image"
         :alt="title"
-        class="w-full h-48 object-cover transition-transform duration-700 hover:scale-110"
+        class="w-full h-52 object-cover transition-transform duration-700 hover:scale-110"
       />
       <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-70"></div>
     </div>

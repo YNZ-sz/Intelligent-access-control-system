@@ -1,9 +1,9 @@
 <template>
   <div
-    class="bg-slate-800/30 backdrop-blur-sm p-6 rounded-xl border border-slate-700/50 hover:border-purple-500/50 transition-all hover:shadow-lg hover:shadow-purple-500/10 group"
+    class="bg-slate-800/30 backdrop-blur-sm p-3 rounded-xl border border-slate-700/50 hover:border-purple-500/50 transition-all hover:shadow-lg hover:shadow-purple-500/10 group"
   >
     <div
-      class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mb-4 group-hover:bg-gradient-to-r from-purple-500 to-blue-500 group-hover:text-white transition-all"
+      class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mb-2 group-hover:bg-gradient-to-r from-purple-500 to-blue-500 group-hover:text-white transition-all"
     >
       <span class="text-purple-400 group-hover:text-white font-bold">{{ iconText }}</span>
     </div>
@@ -11,7 +11,7 @@
     <div class="w-full h-2 bg-slate-700 rounded-full overflow-hidden">
       <div
         class="h-full bg-gradient-to-r from-purple-500 to-blue-500 transition-all duration-1000 ease-out"
-        :style="{ width: '0%' }"
+        :style="{ width: `${props.percentage}%` }"
         ref="skillBarRef"
       ></div>
     </div>
@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 const props = defineProps<{
   title: string

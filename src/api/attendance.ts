@@ -9,10 +9,14 @@ export interface addRuleItem {
   earlyLeaveThreshold: number
 }
 
-export const getAttendanceInfo = () => {
+export const getAttendanceInfo = (pageNum = 1, pageSize = 10) => {
   return request({
     url: '/admin/attendance/rule',
     method: 'get',
+    params: {
+      pageNum, // 类型 number + 默认值 1
+      pageSize, // 类型 number + 默认值 10
+    },
   })
 }
 export const addAttendanceInfoApi = (data: addRuleItem) => {

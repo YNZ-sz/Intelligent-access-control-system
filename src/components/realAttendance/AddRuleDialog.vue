@@ -59,7 +59,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps, defineEmits, reactive } from 'vue'
+import { ref, reactive } from 'vue'
 import {
   ElForm,
   ElFormItem,
@@ -124,6 +124,7 @@ const onSubmit = async () => {
     await ruleFormRef.value.validate()
     // 调用后端接口上传数据
     attendanceStore.addAttendanceInfo(ruleForm)
+    attendanceStore.fetchRuleList()
   } catch (err) {
     ElMessage.error('规则添加失败，请重试')
   }

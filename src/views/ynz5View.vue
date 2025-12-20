@@ -739,7 +739,7 @@ const submitContactForm = () => {
 const back = () => {
   router.push({ path: '/main' })
 }
-const resumeImageUrl = '@/assets/images/ynzjianli.png'
+const resumeImageUrl = 'https://8.134.138.69/images/ynzjianli.png'
 const downloadResumeImage = () => {
   const link = document.createElement('a')
   // 2. 设置图片地址为a标签的链接

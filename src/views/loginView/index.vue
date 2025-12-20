@@ -3,10 +3,10 @@
   <!-- 全屏背景容器 -->
   <div
     class="min-h-screen bg-cover bg-center flex items-center justify-center"
-    style="background-image: url('https://picsum.photos/id/1025/1920/1080')"
+    :style="{ backgroundImage: `url(${loginBg})` }"
   >
     <!-- 半透明遮罩 -->
-    <div class="absolute inset-0 bg-black/30 backdrop-blur-sm"></div>
+    <div class="absolute inset-0 bg-black/30"></div>
 
     <!-- 登录卡片（居中 + 阴影） -->
     <div
@@ -15,11 +15,9 @@
     >
       <!-- 卡片顶部图标 -->
       <div class="flex justify-center mb-6">
-        <el-avatar :size="80" class="bg-indigo-600 text-white shadow-lg">
-          <DataAnalysis />
-        </el-avatar>
+        <img src="@/assets/images/loginLogo.png" alt="logo" class="z-10 w-20 h-auto rounded-2xl" />
       </div>
-      <h2 class="text-2xl font-bold text-center text-gray-800 mb-8">智能考勤系统</h2>
+      <h2 class="text-2xl font-bold text-center text-gray-800 mb-8">智慧考勤系统入口</h2>
 
       <form @submit.prevent="handleLogin" class="space-y-6">
         <!-- 账号输入框 -->
@@ -253,6 +251,7 @@ import { login } from '@/api/user'
 // 导入 Element Plus 组件和图标
 import { ElInput, ElAvatar, ElIcon, ElLoading } from 'element-plus'
 import { getcode, phoneregist } from '@/api/user' // 导入接口
+import loginBg from '@/assets/images/loginBg.png'
 
 // import {
 //   UserSolid,

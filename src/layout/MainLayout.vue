@@ -201,9 +201,9 @@
         </div>
       </el-header>
 
-      <el-main
-        class="bg-gradient-to-br from-sky-100 via-indigo-100 via-purple-100 to-rose-100 flex-1 overflow-y-auto p-6 bg-gray-50"
-        style="max-height: calc(100vh - 4rem)"
+      <div
+        class="h-[100vh-4rem] bg-gradient-to-br from-sky-100 via-indigo-100 via-purple-100 to-rose-100 flex-1 overflow-y-auto p-6 bg-gray-50"
+        ref="listRef"
       >
         <div
           v-if="!isSidebarCollapse"
@@ -281,7 +281,7 @@
 
         <!-- 子路由组件（员工管理页面）会在这里渲染，溢出时滚动 -->
         <router-view />
-      </el-main>
+      </div>
 
       <!-- 主内容区（滚动） -->
     </div>
@@ -289,10 +289,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 import { useEmployeeStore } from '@/stores/employee'
+import { useAttendanceStore } from '@/stores/attendance'
 
 import type { MenuItem } from '@/config/menu'
 import type { Edit } from '@element-plus/icons-vue'
@@ -346,6 +347,7 @@ import type { Edit } from '@element-plus/icons-vue'
 const userStore = useUserStore()
 const EmployeeStore = useEmployeeStore()
 const router = useRouter()
+const route = useRoute()
 
 // 响应式变量
 const username = ref<string | null>('testAdmin') // 从 Pinia 获取用户名
@@ -362,13 +364,51 @@ const chartType = ref<string>('checkIn') // 图表类型
 const isHoverPersonal = ref<boolean>(false)
 const isHoveringIndex = ref('') // 当前悬浮的菜单index
 
+const listRef = ref<HTMLDivElement | null>(null)
+const attendanceStore = useAttendanceStore()
+
 onMounted(() => {
   // 页面刷新时，若存在 token 和用户角色，则重新初始化菜单
   userStore.restoreState()
   if (userStore.token && userStore.userInfo.role) {
     userStore.initMenus()
   }
+  // if (listRef.value&&(route.path==='/main/Attendance')) {
+  // listRef.value.addEventListener('scroll', handleListScroll)
+  // }
 })
+// onUnmounted(() => {
+//   if (listRef.value) {
+//     listRef.value.removeEventListener('scroll', handleListScroll);
+//   }})
+
+watch(
+  route, // 监听的响应式数据（ref 对象，直接传入）
+  (newValue, oldValue) => {
+    // newValue：数据变化后的新值
+    // oldValue：数据变化前的旧值
+    // console.log(`用户名从 ${oldValue} 变为 ${newValue}`);
+
+    // 可执行业务逻辑：如实时校验用户名、发起搜索请求等
+
+    if (listRef.value) {
+      if (route.path === '/main/Attendance') {
+        listRef.value.addEventListener('scroll', handleListScroll)
+      } else {
+        listRef.value.removeEventListener('scroll', handleListScroll)
+      }
+    }
+  },
+)
+// 列表滚动加载
+const handleListScroll = () => {
+  if (!listRef.value) return
+  const { scrollTop, scrollHeight, clientHeight } = listRef.value
+  if (scrollHeight - scrollTop - clientHeight < 20) {
+    attendanceStore.fetchRuleList(true)
+  }
+}
+
 // 菜单选中事件
 const handleMenuSelect = (index: string) => {
   activeMenu.value = index

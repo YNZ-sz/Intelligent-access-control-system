@@ -37,7 +37,7 @@ export const menuList = [
     index: '/main/department',
     title: '部门管理',
     icon: 'Grid',
-    roles: ['EMPLOYEE', 'admin', 'manager'], // 仅管理员可看
+    roles: [], // 仅管理员可看
   },
   {
     index: '/mainsystem',

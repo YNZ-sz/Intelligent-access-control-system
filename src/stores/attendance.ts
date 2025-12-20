@@ -12,6 +12,7 @@ interface RuleItem {
   lateThreshold: number
   earlyLeaveThreshold: number
   isEnabled: number
+  ruleUrl?: number
 }
 
 export const useAttendanceStore = defineStore('attendance', () => {
@@ -31,13 +32,12 @@ export const useAttendanceStore = defineStore('attendance', () => {
 
     loading.value = true
     try {
-      const res: any = await getAttendanceInfo()
+      const res: any = await getAttendanceInfo(page.value, pageSize.value)
 
       if (res.code !== 200) {
         throw new Error(res.msg)
       }
-      console.log(res)
-      const data = res.data
+      const data = res.data.list
       if (isLoadMore) {
         ruleList.value.push(...data)
         page.value += 1
@@ -45,7 +45,7 @@ export const useAttendanceStore = defineStore('attendance', () => {
         ruleList.value = data
         page.value = 1
       }
-      // hasMore.value = data.length === pageSize.value
+      hasMore.value = data.length === pageSize.value
     } catch (err) {
       console.error('获取规则失败:', err)
     } finally {
@@ -54,8 +54,6 @@ export const useAttendanceStore = defineStore('attendance', () => {
   }
   // 方法：添加规则列表
   const addAttendanceInfo = async (data: addRuleItem) => {
-    console.log('1235vv')
-
     try {
       const res: any = await addAttendanceInfoApi(data)
 
